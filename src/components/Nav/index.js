@@ -1,21 +1,15 @@
 import React from 'react';
+import { capitalizeFirstLetter } from "../../utils/helpers";
 
 function Nav() {
     const categories = [
-        {
-          name: "commercial",
-          description:
-            "Photos of grocery stores, food trucks, and other commercial projects",
-        },
+        { name: "commercial", description: "Photos of grocery stores, food trucks, and other commercial projects"},
         { name: "portraits", description: "Portraits of people in my life" },
         { name: "food", description: "Delicious delicacies" },
-        {
-          name: "landscape",
-          description: "Fields, farmhouses, waterfalls, and the beauty of nature",
-        },
+        { name: "landscape", description: "Fields, farmhouses, waterfalls, and the beauty of nature"},
       ];
-      function categorySelected() {
-        console.log("hello");
+      const handleClick = () => {
+        console.log("click handled")
       }
     return (
         <header>
@@ -27,17 +21,19 @@ function Nav() {
             <nav>
                 <ul className="flex-row" >
                     <li className="mx-2" >
-                        <a href="#about">
+                        <a href="#about" onClick={() => handleClick()}>
                             About me
                         </a>
                     </li>
                     <li>
-                        <span>Contact</span>
+                        <span onClick={() => handleClick()}>
+                            Contact
+                        </span>
                     </li>
                     {categories.map((category) => (
                         <li className="mx-1" key={category.name}>   
-                        <span onClick={() => categorySelected(category.name)} >
-                            {category.name}
+                        <span onClick={() => {handleClick(); }} >
+                            {capitalizeFirstLetter(category.name)}
                         </span>
                         </li>
                     ))}
